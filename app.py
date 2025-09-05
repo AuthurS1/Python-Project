@@ -1,80 +1,44 @@
-import os, time
+from flask import Flask, render_template, request, redirect
+import os
+
+app = Flask(__name__)
+
+# Load data từ file nếu có
 todo = []
-#f = open("to.do", "r")
-#todo = eval(f.read())
-#f.close()
+if os.path.exists("to.do"):
+    with open("to.do", "r") as f:
+        content = f.read().strip()
+        if content:
+            todo = eval(content)
 
+@app.route("/")
+def index():
+    return render_template("index.html", todo=todo)
+
+@app.route("/add", methods=["POST"])
 def add():
-  time.sleep(1)
-  os.system("clear")
-  name = input("Name > ")
-  date = input("Due Date > ")
-  priority = input("Priority > ")
-  row = [name, date, priority]
-  todo.append(row)
-  print("Added")
-
-def view():
-  time.sleep(1)
-  os.system("clear")
-  options = input("1: All\n2: By Priority\n > ")
-  if options == "1":
-    for row in todo:
-      for item in row:
-        print(item, end="|")
-      print()
-    print()
-  else:
-    priority = input("What priority? > ").capitalize()
-    for row in todo:
-      if priority in row:
-        for item in row:
-          print(item, end="|")
-        print()
-      print()
-    time.sleep(1)
-
-def edit():
-  time.sleep(1)
-  os.system("clear")
-  find = input("Name of todo to edit > ")
-  found = False
-  for row in todo:
-    if find in row:
-      found = True
-    if not found:
-      print("Couldn't find that")
-      return
-    for row in todo:
-      if find in row:
-        todo.remove(row)
-    name = input("Name > ")
-    date = input("Due Date >")
-    priority = input(" Priority >").capitalize()
+    name = request.form.get("name")
+    date = request.form.get("date")
+    priority = request.form.get("priority")
     row = [name, date, priority]
     todo.append(row)
-    print("Added")
 
-def remove():
-  time.sleep(1)
-  os.system("clear")
-  find = input("Name of todo to remove > ")
-  for row in todo:
-    if find in row:
-      todo.remove(row)
+    # Lưu vào file
+    with open("to.do", "w") as f:
+        f.write(str(todo))
 
-while True:
-  menu = input("1: Add\n2: View\n3: Edit\n4: Remove\n >")
-  if menu == "1":
-    add()
-  elif menu == "2":
-    view()
-  elif menu == "3":
-    edit()
-  else:
-    remove()
-  time.sleep(1)
-  os.system("clear")
-  f = open("to.do", "w")
-  f.write(str(todo))
-  f.close()
+    return redirect("/")
+
+@app.route("/remove/<name>")
+def remove(name):
+    global todo
+    todo = [row for row in todo if row[0] != name]
+
+    # Lưu lại
+    with open("to.do", "w") as f:
+        f.write(str(todo))
+
+    return redirect("/")
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

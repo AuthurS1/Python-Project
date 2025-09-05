@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>My To-Do List</h1>
+
+        <form method="POST" action="/add" class="todo-form">
+            <input type="text" name="name" placeholder="Task name" required>
+            <input type="text" name="date" placeholder="Due date">
+            <select name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+            <button type="submit">Add</button>
+        </form>
+
+        <ul class="todo-list">
+        {% for row in todo %}
+            <li>
+                <span class="task">{{ row[0] }}</span>
+                <span class="date">{{ row[1] }}</span>
+                <span class="priority {{ row[2]|lower }}">{{ row[2] }}</span>
+                <a href="/remove/{{ row[0] }}" class="delete">❌</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
