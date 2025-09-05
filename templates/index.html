@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Khai báo bộ ký tự là UTF-8 để hiển thị tiếng Việt, ký tự đặc biệt -->
     <meta charset="UTF-8">
-    <title>To-Do List</title>
+    <title>To Do List</title>
+    <!-- Gọi file CSS trong thư mục static, Flask sẽ tự tìm đúng đường dẫn -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>My To-Do List</h1>
+        <h1>To Do List</h1>
 
         <form method="POST" action="/add" class="todo-form">
             <input type="text" name="name" placeholder="Task name" required>
@@ -17,6 +19,7 @@
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
             </select>
+            <!-- Nút bấm để thêm công việc -->
             <button type="submit">Add</button>
         </form>
 
@@ -26,10 +29,13 @@
                 <span class="task">{{ row[0] }}</span>
                 <span class="date">{{ row[1] }}</span>
                 <span class="priority {{ row[2]|lower }}">{{ row[2] }}</span>
+                <!-- Link để xóa công việc, gửi tên công việc lên route /remove -->
                 <a href="/remove/{{ row[0] }}" class="delete">❌</a>
             </li>
         {% endfor %}
         </ul>
     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

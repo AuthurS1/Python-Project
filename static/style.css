@@ -1,91 +1,121 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f7f8;
-    display: flex;
+    font-family: Arial, sans-serif; /* Đặt font chữ mặc định là Arial, nếu không có thì dùng sans-serif */
+    background: black;
+    display: flex; /* Sử dụng flexbox để bố cục */
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    align-items: flex-start; /* Căn dọc (trục phụ) từ phía trên */
+    padding: 20px; /* Khoảng cách bên trong body với mép trình duyệt */
 }
 
 .container {
     background: #fff;
-    padding: 20px 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-    width: 500px;
+    padding: 20px 30px; /* Khoảng cách bên trong (trên dưới 20px, trái phải 30px) */
+    border-radius: 12px; /* Bo góc khung */
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1); /* Đổ bóng mờ dưới container */
+    width: 700px; /* Chiều rộng cố định */
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Tạo khoảng cách dưới */
     color: #333;
 }
 
 .todo-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex; /* Sắp xếp input, select và button trên 1 dòng */
+    gap: 1px; /* Khoảng cách giữa các phần tử */
+    margin-bottom: 20px; /* Tạo khoảng cách với danh sách bên dưới */
 }
 
 .todo-form input, .todo-form select, .todo-form button {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 10px; /* Tạo khoảng cách bên trong */
+    border: 3px solid blueviolet; 
+    border-radius: 20px; /* Bo tròn góc */
 }
 
 .todo-form button {
     background: #28a745;
     color: white;
-    border: none;
-    cursor: pointer;
+    border: none; /* Xóa viền */
+    cursor: pointer; /* Đổi chuột thành bàn tay khi hover */
     transition: 0.3s;
 }
 
 .todo-form button:hover {
-    background: #218838;
+    background: #218838; /* Khi hover, đổi màu xanh đậm hơn */
 }
 
 .todo-list {
-    list-style: none;
-    padding: 0;
+    list-style: none; /* Bỏ dấu chấm đầu dòng mặc định */
+    padding: 0; /* Xóa khoảng cách mặc định */
 }
 
 .todo-list li {
-    display: flex;
-    justify-content: space-between;
+    display: flex; /* Sắp xếp các phần tử trong li theo hàng ngang */
+    justify-content: space-between; /* Dàn đều: trái - giữa - phải */
     align-items: center;
-    padding: 10px;
+    padding: 10px; /* Khoảng cách trong li */
     margin-bottom: 8px;
-    background: #f9f9f9;
-    border-radius: 6px;
-    border-left: 6px solid #ccc;
+    background: #f9f9f9; 
+    border-radius: 30px; 
+    border-left: 5px solid rgba(7, 7, 61, 0.81);
+    border-right: 5px solid rgba(7, 7, 61, 0.81);
 }
 
 .task {
-    flex: 1;
-    font-weight: bold;
+    flex: 5; /* Cho phần text chiếm tối đa không gian còn lại */
+    font-weight: bold; /* In đậm nội dung task */
 }
 
 .date {
-    margin: 0 10px;
-    font-size: 0.9em;
+
+    margin: 0 10px; /* Khoảng cách trái phải 10px */
+    font-size: 0.9em; /* Giảm cỡ chữ */
     color: #666;
 }
 
 .priority {
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 0.85em;
+    padding: 8px 16px; /* Khoảng cách bên trong */
+    border-radius: 25px;
+    font-size: 0.75em;
     font-weight: bold;
     text-transform: capitalize;
 }
 
-.priority.low { background: #d4edda; color: #155724; }
-.priority.medium { background: #fff3cd; color: #856404; }
-.priority.high { background: #f8d7da; color: #721c24; }
+.priority.low { background: #0ac937; color: #110202; }
+.priority.medium { background: #f5bd05; color: #110202; }
+.priority.high { background: #ff0602; color: #110202; }
 
 .delete {
-    text-decoration: none;
-    font-size: 1.2em;
+    margin: 0 10px;
+    text-decoration: none; /* Bỏ gạch chân */
+    font-size: 0.9em; /* Chữ to hơn một chút */
     color: #dc3545;
 }
+
+.message {
+    display: none;
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease;
+}
+
+.filter {
+    margin: 10px 0 20px 0;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.todo-list li:hover {
+    background: #f81a1a;
+    transition: 0.3s;
+}
+
