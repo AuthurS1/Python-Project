@@ -1,9 +1,9 @@
 body {
   font-family: Arial, sans-serif; /* Đặt font chữ mặc định là Arial, nếu không có thì dùng sans-serif */
   display: flex; /* Sử dụng flexbox để bố cục */
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start; /* Căn dọc (trục phụ) từ phía trên */
-  padding: 100px; /* Khoảng cách bên trong body với mép trình duyệt */
+  padding: 20px; /* Khoảng cách bên trong body với mép trình duyệt */
 
   /* nền */
   background-image: url("/static/video-bg.jpg");
@@ -12,15 +12,31 @@ body {
   background-position: center;
 }
 
+.wrapper {
+    display: flex;          /* Xếp 2 container theo hàng */
+    justify-content: flex-start; /* container1 sát trái */
+    align-items: flex-start; /* căn trên cùng */
+    gap: 50px;              /* khoảng cách giữa 2 container */
+    padding: 20px;
+}
 
 .container {
     background: #fff;
+    margin-right: 5%;
     padding: 20px 30px; /* Khoảng cách bên trong (trên dưới 20px, trái phải 30px) */
     border-radius: 12px; /* Bo góc khung */
     box-shadow: 0px 4px 15px rgba(0,0,0,0.1); /* Đổ bóng mờ dưới container */
-    width: 700px; /* Chiều rộng cố định */
+    width: 600px; /* Chiều rộng cố định */
 }
 
+.container2 {
+    background: burlywood;
+    padding: 40px 30px; 
+    border-radius: 12px; 
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1); 
+    width: 900px; 
+    p {color: black;}
+}
 
 .container h1 {
     text-align: center;
@@ -31,7 +47,7 @@ body {
 .container2 h1 {
     text-align: center;
     margin-bottom: 20px; /* Tạo khoảng cách dưới */
-    color: white;
+    color: black;
 }
 
 p {
@@ -138,3 +154,9 @@ p {
     transition: 0.3s;
 }
 
+.container2 img {
+    display: block;      /* chuyển img từ inline thành block để margin auto hoạt động */
+    margin: 0 auto;      /* tự động căn trái và phải */
+    max-width: 100%;     /* tránh vượt container */
+    height: auto;        /* giữ tỉ lệ */
+}
