@@ -1,11 +1,17 @@
 body {
-    font-family: Arial, sans-serif; /* Đặt font chữ mặc định là Arial, nếu không có thì dùng sans-serif */
-    background: black;
-    display: flex; /* Sử dụng flexbox để bố cục */
-    justify-content: center;
-    align-items: flex-start; /* Căn dọc (trục phụ) từ phía trên */
-    padding: 20px; /* Khoảng cách bên trong body với mép trình duyệt */
+  font-family: Arial, sans-serif; /* Đặt font chữ mặc định là Arial, nếu không có thì dùng sans-serif */
+  display: flex; /* Sử dụng flexbox để bố cục */
+  justify-content: center;
+  align-items: flex-start; /* Căn dọc (trục phụ) từ phía trên */
+  padding: 100px; /* Khoảng cách bên trong body với mép trình duyệt */
+
+  /* nền */
+  background-image: url("/static/video-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
 
 .container {
     background: #fff;
@@ -15,13 +21,20 @@ body {
     width: 700px; /* Chiều rộng cố định */
 }
 
-h1 {
+
+.container h1 {
     text-align: center;
     margin-bottom: 20px; /* Tạo khoảng cách dưới */
     color: #333;
 }
 
-.p {
+.container2 h1 {
+    text-align: center;
+    margin-bottom: 20px; /* Tạo khoảng cách dưới */
+    color: white;
+}
+
+p {
     text-align: center;
     margin-bottom: 20px;
     color: white;
