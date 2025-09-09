@@ -1,23 +1,23 @@
 // Hiện thông báo khi thêm task
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector(".todo-form");
-    const message = document.createElement("div");
-    message.className = "message";
-    document.body.prepend(message);
+document.addEventListener("DOMContentLoaded", () => { // Đợi cho đến khi toàn bộ nội dung HTML được load xong
+    const form = document.querySelector(".todo-form"); // Lấy form thêm task (có class .todo-form)
+    const message = document.createElement("div"); // Tạo một thẻ <div> để hiển thị thông báo
+    message.className = "message"; // gán class cho div
+    document.body.prepend(message); // đưa message lên đầu body
 
-    form.addEventListener("submit", () => {
-        message.textContent = "✅ Task Added!";
-        message.style.display = "block";
-        setTimeout(() => {
+    form.addEventListener("submit", () => { // Khi submit form (thêm task mới)
+        message.textContent = "✅ Task Added!"; // hiển thị nội dung thông báo
+        message.style.display = "block"; // bật hiển thị
+        setTimeout(() => { // sau 2 giây thì ẩn đi
             message.style.display = "none";
         }, 2000);
     });
 
     // Xác nhận trước khi xóa
-    const deleteLinks = document.querySelectorAll(".delete");
+    const deleteLinks = document.querySelectorAll(".delete"); // lấy tất cả nút xóa
     deleteLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            if (!confirm("Bạn có chắc muốn xóa task này không?")) {
+            if (!confirm("Delete it?")) { // Nếu người dùng bấm "Cancel" thì chặn hành động xóa
                 e.preventDefault();
             }
         });
